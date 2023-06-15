@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/searchBusinessFragment">
+
+    <fragment
+        android:id="@+id/searchBusinessFragment"
+        android:name="com.example.finderapp.ui.searchbusiness.SearchBusinessFragment"
+        android:label="@string/home_title"
+        tools:layout="@layout/fragment_search_bussines">
+        <action
+            android:id="@+id/action_searchBusinessFragment_to_businessDetailFragment"
+            app:destination="@id/businessDetailFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_rigth" />
+    </fragment>
+    <fragment
+        android:id="@+id/businessDetailFragment"
+        android:name="com.example.finderapp.ui.businessdetail.BusinessDetailFragment"
+        android:label="@string/title_detail"
+        tools:layout="@layout/fragment_business_detail">
+        <argument
+            android:name="BusinessId"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>

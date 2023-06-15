@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- General -->
+    <string name="app_name">FinderApp</string>
+    <string name="home_title">Home</string>
+
+    <!-- Home fragment-->
+    <string name="txt_name">Name</string>
+    <string name="txt_category">Category</string>
+    <string name="txt_address">Address</string>
+    <string name="txt_search">Search…</string>
+    <string name="search_do_search">Please do search</string>
+    <string name="error_location">Error getting the location, check the gps</string>
+    <string name="txt_information">Information</string>
+    <string name="txt_cancel">Cancel</string>
+    <string name="txt_request">Request</string>
+    <string name="txt_required_permission">location and gps permissions are required to search</string>
+
+    <!-- detail fragment -->
+    <string name="title_information">Information</string>
+    <string name="title_detail">Details</string>
+    <string name="title_name">Name</string>
+    <string name="title_phone">Phone</string>
+    <string name="title_address">Address</string>
+    <string name="title_categories">Categories</string>
+    <string name="title_reviews">Reviews</string>
+    <string name="text_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="title_no_reviews">Not found</string>
+</resources>

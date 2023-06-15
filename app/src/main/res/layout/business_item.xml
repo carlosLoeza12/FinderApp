@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="145dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="5dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:focusable="true"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/imgBusiness"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/not_found">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/txtBusinessName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgBusiness"
+            app:layout_constraintEnd_toStartOf="@id/imgOpen"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="@string/txt_name"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:layout_marginVertical="8dp"
+            android:layout_marginHorizontal="8dp"/>
+
+        <ImageView
+            android:id="@+id/imgOpen"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/ic_green_circle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtBusinessName"
+            android:layout_marginEnd="8dp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/txtBusinessCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtBusinessName"
+            app:layout_constraintStart_toEndOf="@id/imgBusiness"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/txt_category"
+            android:maxLines="1"
+            android:textStyle="italic"
+            android:ellipsize="end"
+            android:layout_marginVertical="8dp"
+            android:layout_marginHorizontal="8dp"/>
+
+        <TextView
+            android:id="@+id/txtBusinessAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtBusinessCategory"
+            app:layout_constraintStart_toEndOf="@id/imgBusiness"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/txt_address"
+            android:maxLines="2"
+            android:textStyle="italic"
+            android:ellipsize="end"
+            android:layout_marginVertical="8dp"
+            android:layout_marginHorizontal="8dp"/>
+
+        <TextView
+            android:id="@+id/txtRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:singleLine="true"
+            android:gravity="center"
+            tools:text="1.2"
+            app:drawableRightCompat="@drawable/ic_star">
+        </TextView>
+
+        <TextView
+            android:id="@+id/txtDistance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtRating"
+            app:layout_constraintStart_toEndOf="@id/imgBusiness"
+            app:layout_constraintEnd_toStartOf="@id/txtRating"
+            tools:text="0.0 kms"
+            android:maxLines="2"
+            android:textStyle="italic"
+            android:ellipsize="end"
+            android:layout_marginHorizontal="8dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
