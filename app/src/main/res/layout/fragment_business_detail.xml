@@ -54,6 +54,18 @@
                 app:drawableRightCompat="@drawable/ic_star">
             </TextView>
 
+
+            <ImageView
+                android:id="@+id/imgMaps"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/carousel"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="30dp">
+            </ImageView>
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/linearInfo"
                 android:layout_width="match_parent"
@@ -66,13 +78,13 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/txtInformationTitle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/title_information"
                     android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:textSize="28sp"
-                    android:gravity="center"/>
+                    android:textSize="28sp" />
 
                 <TextView
                     android:layout_width="match_parent"

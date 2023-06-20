@@ -1,7 +1,7 @@
 package com.example.finderapp.di
 
-import com.example.finderapp.repository.BusinessRepository
-import com.example.finderapp.repository.BusinessRepositoryImpl
+import com.example.finderapp.repository.Repository
+import com.example.finderapp.repository.RepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,5 +12,5 @@ import dagger.hilt.android.components.ViewModelComponent
 abstract class ViewModelModule {
 
     @Binds
-    abstract fun bindRepoImpl(businessRepositoryImpl: BusinessRepositoryImpl): BusinessRepository
+    abstract fun bindRepoImpl(repositoryImpl: RepositoryImpl): Repository
 }

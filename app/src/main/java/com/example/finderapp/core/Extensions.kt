@@ -2,15 +2,19 @@ package com.example.finderapp.core
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.example.finderapp.R
 import com.example.finderapp.data.model.Categories
 import com.example.finderapp.data.model.Permissions
+import com.google.android.gms.maps.model.LatLng
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -110,4 +114,40 @@ fun String.toDateFormat(): String {
         formatter.format(stringParsed)
     }
     return date ?: ""
+}
+
+fun Int.secondsToFormat(): String {
+
+    val min = this / 60
+    val hours = min / 60
+    val remainingMinutes = min % 60
+    val remainingSeconds = this % 60
+
+    var finalTime = ""
+
+    if(hours > 0){
+        finalTime = hours.toString() + "H "
+    }
+
+    if(remainingMinutes > 0){
+        finalTime = finalTime + remainingMinutes.toString() + "m "
+    }
+
+    if(remainingSeconds > 0){
+        finalTime = finalTime + remainingSeconds.toString() + "s"
+    }
+
+    return finalTime
+}
+
+fun Context.actionOpenMaps(latLng: LatLng) {
+    val navigationIntentUri = Uri.parse("google.navigation:q=" + latLng.latitude + "," + latLng.longitude)
+
+    try {
+        val mapIntent = Intent(Intent.ACTION_VIEW, navigationIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        this.startActivity(mapIntent)
+    } catch (e: Exception) {
+        Toast.makeText(this, this.getText(R.string.install_maps), Toast.LENGTH_SHORT).show()
+    }
 }

@@ -1,7 +1,10 @@
 package com.example.finderapp.data.model
 
-data class BusinessesList(val businesses: List<Business>? = emptyList())
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+data class BusinessesList(val businesses: List<Business>? = emptyList())
+@Parcelize
 data class Business(
     val id: String? = "",
     val alias: String? = "",
@@ -18,18 +21,18 @@ data class Business(
     val display_phone: String? = "",
     val distance: Double? = 0.0,
     val photos: List<String>? = emptyList()
-)
-
+): Parcelable
+@Parcelize
 data class Categories(
     val alias: String? = "",
     val title: String? = ""
-)
-
+): Parcelable
+@Parcelize
 data class Coordinates(
     val latitude: Double? = 0.0,
     val longitude: Double? = 0.0
-)
-
+): Parcelable
+@Parcelize
 data class Location(
     val address1: String? = "",
     val address2: String? = "",
@@ -39,4 +42,4 @@ data class Location(
     val country: String? = "",
     val state: String? = "",
     val display_address: List<String>? = emptyList()
-)
+): Parcelable

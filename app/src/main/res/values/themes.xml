@@ -10,4 +10,10 @@
     </style>
 
     <style name="Theme.FinderApp" parent="Base.Theme.FinderApp" />
+
+    <style name="SplashThem" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">@color/red</item>
+    </style>
+
 </resources>

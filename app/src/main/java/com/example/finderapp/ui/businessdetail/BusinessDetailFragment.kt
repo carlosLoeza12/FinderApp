@@ -3,8 +3,10 @@ package com.example.finderapp.ui.businessdetail
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finderapp.R
@@ -25,6 +27,18 @@ class BusinessDetailFragment : Fragment(R.layout.fragment_business_detail) {
     private val viewModel by viewModels<BusinessDetailViewModel>()
     private val args by navArgs<BusinessDetailFragmentArgs>()
     private lateinit var businessDetailAdapter: BusinessDetailAdapter
+    private var business: Business? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        args.let {
+            args.businessId?.let { businessId->
+                viewModel.getBusinessById(businessId)
+                viewModel.getReviewsByBusiness(businessId)
+            }
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,12 +47,6 @@ class BusinessDetailFragment : Fragment(R.layout.fragment_business_detail) {
     }
 
     private fun initComponents(){
-        args.let {
-            args.businessId?.let { businessId->
-                viewModel.getBusinessById(businessId)
-                viewModel.getReviewsByBusiness(businessId)
-            }
-        }
 
         businessDetailAdapter = BusinessDetailAdapter(emptyList())
         binding.recyclerReviews.apply {
@@ -52,18 +60,22 @@ class BusinessDetailFragment : Fragment(R.layout.fragment_business_detail) {
 
                 is ResponseResult.Success -> {
                     binding.progressBar.isVisible = false
-                    result.data?.let { business->
-                        setDataForBusiness(business)
+                    result.data?.let { businessResult->
+                        setDataForBusiness(businessResult)
+                        business = businessResult
                     }
                 }
 
-                is ResponseResult.Error -> binding.progressBar.isVisible = false
+                is ResponseResult.Error -> {
+                    Toast.makeText(requireContext(), getText(R.string.error), Toast.LENGTH_SHORT).show()
+                    binding.progressBar.isVisible = false
+                }
             }
         }
 
         viewModel.reviews.observe(viewLifecycleOwner){ result->
             when(result){
-                is ResponseResult.Loading -> println("loading")
+                is ResponseResult.Loading -> println("loading reviews")
                 is ResponseResult.Success -> {
                     result.data?.reviews?.let {
                         if (it.isNotEmpty()) {
@@ -76,6 +88,13 @@ class BusinessDetailFragment : Fragment(R.layout.fragment_business_detail) {
                 is ResponseResult.Error -> {
                     binding.txtNoReviews.isVisible = true
                 }
+            }
+        }
+
+        binding.imgMaps.setOnClickListener {
+            business?.let {
+                val action = BusinessDetailFragmentDirections.actionBusinessDetailFragmentToBusinessMapFragment(it)
+                findNavController().navigate(action)
             }
         }
 

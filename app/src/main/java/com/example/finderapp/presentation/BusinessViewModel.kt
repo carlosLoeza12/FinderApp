@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finderapp.core.ResponseResult
 import com.example.finderapp.data.model.BusinessesList
-import com.example.finderapp.repository.BusinessRepository
+import com.example.finderapp.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,7 +15,7 @@ import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class BusinessViewModel @Inject constructor(private val repository: BusinessRepository): ViewModel() {
+class BusinessViewModel @Inject constructor(private val repository: Repository): ViewModel() {
 
     private val _businessList = MutableLiveData<ResponseResult<BusinessesList>>()
     val businessesList: LiveData<ResponseResult<BusinessesList>> = _businessList
