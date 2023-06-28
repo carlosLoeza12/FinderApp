@@ -2,9 +2,12 @@ package com.finder.finderapp.ui.searchbusiness
 
 import android.Manifest
 import android.app.Dialog
-import android.content.IntentSender
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -31,16 +34,9 @@ import com.finder.finderapp.data.model.Permissions
 import com.finder.finderapp.databinding.FragmentSearchBussinesBinding
 import com.finder.finderapp.databinding.PopUpInformationBinding
 import com.finder.finderapp.presentation.BusinessViewModel
-import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.Granularity
-import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.LocationSettingsRequest
-import com.google.android.gms.location.LocationSettingsResponse
 import com.google.android.gms.location.Priority
-import com.google.android.gms.location.SettingsClient
-import com.google.android.gms.tasks.Task
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -56,7 +52,13 @@ class SearchBusinessFragment : Fragment(R.layout.fragment_search_bussines), Sear
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()){
             isGranted ->
         if(isGranted){
-            showRequestGps()
+            if(isGPSEnabled()){
+                println("gps activated")
+            }else{
+                showInformationDialog(getString(R.string.txt_gps_required), true)
+            }
+        }else{
+            showInformationDialog(getString(R.string.txt_location_required), false)
         }
     }
 
@@ -163,26 +165,55 @@ class SearchBusinessFragment : Fragment(R.layout.fragment_search_bussines), Sear
 
     private fun doSearchByLocation(query: String){
        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            val location = fusedLocationClient.lastLocation
-            location.addOnSuccessListener {
-                if(it != null){
-                    viewModel.getBusinessByKeyword(it.latitude, it.longitude, query)
-                }else{
-                    Toast.makeText(requireContext(), getText(R.string.error_location), Toast.LENGTH_SHORT).show()
-                }
-            }
-        }else{
+
+           fusedLocationClient.lastLocation.addOnSuccessListener {
+               if(it == null){
+                   if (isGPSEnabled()) {
+                       fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null)
+                           .addOnSuccessListener { location ->
+                               location?.let {
+                                   println("currentLocation")
+                                   viewModel.getBusinessByKeyword(location.latitude, location.longitude, query)
+                               }
+                           }
+                   }else{
+                       Toast.makeText(requireContext(), getText(R.string.error_location), Toast.LENGTH_SHORT).show()
+                   }
+               }else{
+                   println("lastlocation")
+                   viewModel.getBusinessByKeyword(it.latitude, it.longitude, query)
+               }
+           }
+
+       } else{
            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
-        }
+       }
     }
 
     private fun requestPermission(){
         val resultPermission = validatePermissions(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
         if(resultPermission == Permissions.REFUSED || shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)){
-            showInformationDialog()
+            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        }else{
+            if(isGPSEnabled()){
+                println("gps activated")
+            }else{
+                showInformationDialog(getString(R.string.txt_gps_required), true)
+            }
         }
     }
 
+    private fun isGPSEnabled(): Boolean {
+        val locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+    }
+
+    private fun requestGPS(){
+        val settingsIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+        startActivity(settingsIntent)
+    }
+
+    /*
     private fun showRequestGps(){
 
         val request = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY,2000).apply {
@@ -211,13 +242,14 @@ class SearchBusinessFragment : Fragment(R.layout.fragment_search_bussines), Sear
         }
 
     }
+     */
 
-    private fun showInformationDialog(){
-        popUpInformationBinding.txtInformation.text = getString(R.string.txt_required_permission)
+    private fun showInformationDialog(message: String, isGPSRequest: Boolean){
+        popUpInformationBinding.txtInformation.text = message
 
         popUpInformationBinding.btnYes.setOnClickListener {
             informationDialog.dismiss()
-            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+            if(isGPSRequest) requestGPS() else requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
 
         popUpInformationBinding.btnNo.setOnClickListener {

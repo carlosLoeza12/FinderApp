@@ -115,7 +115,7 @@ class BusinessMapFragment : Fragment(R.layout.fragment_business_map), OnMapReady
                 }
             }
         } else{
-            Toast.makeText(requireContext(), getText(R.string.txt_required_permission), Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getText(R.string.txt_gps_required), Toast.LENGTH_SHORT).show()
         }
     }
 
