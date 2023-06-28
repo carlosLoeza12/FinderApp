@@ -4,24 +4,37 @@ plugins {
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
     id 'androidx.navigation.safeargs'
+    id 'kotlin-parcelize'
 }
 
 android {
-    namespace 'com.example.finderapp'
+
+    signingConfigs {
+        release {
+            storeFile file('C:/Users/carlo/OneDrive/Escritorio/Key/FinderApp/FinderApp.jks')
+            storePassword 'finderApp123'
+            keyAlias 'finderApp'
+            keyPassword 'finderApp123'
+        }
+    }
+
+    namespace 'com.finder.finderapp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.finderapp"
+        applicationId "com.finder.finderapp"
         minSdk 21
         targetSdk 33
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         Properties properties = new Properties()
         properties.load(project.rootProject.file("local.properties").newDataInputStream())
         resValue "string", "YELP_API_KEY", (properties.getProperty("YELP_API_KEY") ?: "")
+        resValue "string", "GOOGLE_MAPS_API_KEY", (properties.getProperty("GOOGLE_MAPS_API_KEY") ?: "")
+        buildConfigField 'String' , 'OPEN_ROUTE_API_KEY' , "\"${properties.getProperty("OPEN_ROUTE_API_KEY")}\""
     }
 
     buildTypes {
@@ -29,10 +42,12 @@ android {
             minifyEnabled false
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
 
         debug{
             debuggable true
+            applicationIdSuffix ".debug"
         }
     }
     compileOptions {
@@ -47,6 +62,7 @@ android {
     }
     buildFeatures {
         buildConfig true
+        viewBinding true
     }
 }
 
@@ -57,6 +73,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.test.ext:junit-ktx:1.1.5'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -89,5 +106,7 @@ dependencies {
     implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0'
     //Circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //play services
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
 }

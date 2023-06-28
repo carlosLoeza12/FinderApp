@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/searchBusinessFragment"
-        android:name="com.example.finderapp.ui.searchbusiness.SearchBusinessFragment"
+        android:name="com.finder.finderapp.ui.searchbusiness.SearchBusinessFragment"
         android:label="@string/home_title"
         tools:layout="@layout/fragment_search_bussines">
         <action
@@ -20,12 +20,28 @@
     </fragment>
     <fragment
         android:id="@+id/businessDetailFragment"
-        android:name="com.example.finderapp.ui.businessdetail.BusinessDetailFragment"
+        android:name="com.finder.finderapp.ui.businessdetail.BusinessDetailFragment"
         android:label="@string/title_detail"
         tools:layout="@layout/fragment_business_detail">
         <argument
             android:name="BusinessId"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_businessDetailFragment_to_businessMapFragment"
+            app:destination="@id/businessMapFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_rigth" />
+    </fragment>
+    <fragment
+        android:id="@+id/businessMapFragment"
+        android:name="com.finder.finderapp.ui.businessmap.BusinessMapFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_business_map">
+        <argument
+            android:name="Business"
+            app:argType="com.finder.finderapp.data.model.Business" />
     </fragment>
 </navigation>
