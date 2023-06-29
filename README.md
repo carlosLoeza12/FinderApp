@@ -1,8 +1,9 @@
-FinderApp.
+# FinderApp.
 
 Disponible en Google play: https://play.google.com/store/apps/details?id=com.finder.finderapp
 
-Descripción general: El objetivo de esta aplicación es realizar búsquedas de lugares de acuerdo al texto que se ingresa, por ejemplo, si en el buscador se escribe “Pizza” se mostrara una lista de negocios relacionados a pizzas. En esta lista se mostrará información sobre el lugar: Nombre, categoría, dirección, valoración y la distancia aproximada. Al hacer click en algún item se navegará a otra pantalla en el cual encontrara información mas detallada como: fotografías, numero y comentarios de personas que han visitado el lugar, así como también un icono (pin) de color rojo que al hacer click navegara a otra pantalla abriendo un mapa con la ruta desde la posición hasta el lugar mostrando la distancia y tiempo aproximada.
+# Descripción general:
+El objetivo de esta aplicación es realizar búsquedas de lugares de acuerdo al texto que se ingresa, por ejemplo, si en el buscador se escribe “Pizza” se mostrara una lista de negocios relacionados a pizzas. En esta lista se mostrará información sobre el lugar: Nombre, categoría, dirección, valoración y la distancia aproximada. Al hacer click en algún item se navegará a otra pantalla en el cual encontrara información mas detallada como: fotografías, numero y comentarios de personas que han visitado el lugar, así como también un icono (pin) de color rojo que al hacer click navegara a otra pantalla abriendo un mapa con la ruta desde la posición hasta el lugar mostrando la distancia y tiempo aproximada.
 
 Para abordar este proyecto primero se hizo el registro en la página de yelp con la finalidad de obtener el api key que servirían como método de autenticación para acceder a la información de los lugares, en base a esto se hizo un análisis para determinar el flujo y la información que tendría la aplicación.
 
@@ -15,7 +16,7 @@ Por ultimo se hizo las configuraciones necesarias para firmar y generar el archi
 Tecnologias y herramientas utilizadas:
 #Android Studio #Kotlin #Mvvm #Navigation component #Retrofit and interceptors #Dagger hilt #Coil #Room #Coroutines, #Google maps #Postman, #View Binding
 
-Links:
+# Links:
 
 OpenRoute service: https://openrouteservice.org/
 
@@ -25,7 +26,7 @@ Google cloud platform: https://cloud.google.com/?hl=es
 
 Google play console: https://play.google.com/console/about/
 
-Capturas:
+# Capturas:
 
 <img width="197" alt="Imagen2" src="https://github.com/carlosLoeza12/FinderApp/assets/68243731/a5fb3fb9-64ef-40e7-bbfb-bbb3593e235b">
 
