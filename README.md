@@ -1,4 +1,6 @@
-FinderApp
+FinderApp.
+
+Disponible en Google play: https://play.google.com/store/apps/details?id=com.finder.finderapp
 
 Descripción general: El objetivo de esta aplicación es realizar búsquedas de lugares de acuerdo al texto que se ingresa, por ejemplo, si en el buscador se escribe “Pizza” se mostrara una lista de negocios relacionados a pizzas. En esta lista se mostrará información sobre el lugar: Nombre, categoría, dirección, valoración y la distancia aproximada. Al hacer click en algún item se navegará a otra pantalla en el cual encontrara información mas detallada como: fotografías, numero y comentarios de personas que han visitado el lugar, así como también un icono (pin) de color rojo que al hacer click navegara a otra pantalla abriendo un mapa con la ruta desde la posición hasta el lugar mostrando la distancia y tiempo aproximada.
 
