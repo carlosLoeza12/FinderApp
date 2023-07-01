@@ -10,12 +10,7 @@ plugins {
 android {
 
     signingConfigs {
-        release {
-            storeFile file('C:/Users/carlo/OneDrive/Escritorio/Key/FinderApp/FinderApp.jks')
-            storePassword 'finderApp123'
-            keyAlias 'finderApp'
-            keyPassword 'finderApp123'
-        }
+
     }
 
     namespace 'com.finder.finderapp'
@@ -25,8 +20,8 @@ android {
         applicationId "com.finder.finderapp"
         minSdk 21
         targetSdk 33
-        versionCode 1
-        versionName "1.0.0"
+        versionCode 2
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
