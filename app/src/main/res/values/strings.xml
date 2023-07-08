@@ -4,7 +4,6 @@
     <string name="app_name">FinderApp</string>
     <string name="home_title">Home</string>
     <string name="error">something went wrong</string>
-    <string name="yes">Yes</string>
 
     <!-- Home fragment-->
     <string name="txt_name">Name</string>
@@ -16,10 +15,8 @@
     <string name="txt_information">Information</string>
     <string name="txt_cancel">Cancel</string>
     <string name="txt_request">Request</string>
-    <string name="txt_gps_required">GPS permissions are required</string>
-    <string name="txt_location_required">Location permissions are required</string>
-    <string name="txt_gps_required_request">The gps permission is required, request?</string>
-    <string name="txt_location_required_request">The location permission is required, request?</string>
+    <string name="txt_gps_required">GPS permissions are required to search</string>
+    <string name="txt_location_required">Location permissions are required to search</string>
 
     <!-- detail fragment -->
     <string name="title_information">Information</string>
@@ -31,16 +28,14 @@
     <string name="title_reviews">Reviews</string>
     <string name="text_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="title_no_reviews">Not found</string>
-    <string name="txt_start_route">Start route to: %s?</string>
 
     <!-- map fragment -->
     <string name="title_map">Map</string>
     <string name="map_my_location">My location</string>
     <string name="distance">Distance</string>
     <string name="Duration">Duration</string>
-    <string name="start_route">Start route</string>
+    <string name="navigation">Navigation</string>
     <string name="install_maps">install google maps</string>
     <string name="title_activity_splash">SplashActivity</string>
-    <string name="stop_route">Do yo want stop the route?</string>
 
 </resources>
