@@ -1,19 +1,26 @@
 package com.finder.finderapp.core
 
+import android.Manifest
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.net.Uri
+import android.provider.Settings
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.finder.finderapp.R
 import com.finder.finderapp.data.model.Categories
 import com.finder.finderapp.data.model.Permissions
+import com.finder.finderapp.databinding.PopUpInformationBinding
 import com.google.android.gms.maps.model.LatLng
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 import java.text.DecimalFormat
@@ -74,6 +81,30 @@ fun Dialog.initialize(view: View, isCancelable: Boolean): Dialog {
     return this
 }
 
+fun showDialogTwoOptions(message: String, isCancelable: Boolean, context: Context, action: () -> Any){
+
+    val popUpInformationBinding = PopUpInformationBinding.inflate(LayoutInflater.from(context))
+    val dialog = Dialog(context)
+
+    dialog.apply {
+        setContentView(popUpInformationBinding.root)
+        setCancelable(isCancelable)
+        window?.setBackgroundDrawableResource(android.R.color.transparent)
+    }
+
+    popUpInformationBinding.txtInformation.text = message
+
+    popUpInformationBinding.btnYes.setOnClickListener {
+        dialog.dismiss()
+        action.invoke()
+    }
+
+    popUpInformationBinding.btnNo.setOnClickListener {
+        dialog.dismiss()
+    }
+
+    dialog.show()
+}
 
 fun validatePermissions(context: Context ,typePermission: String): Permissions{
     return if (ContextCompat.checkSelfPermission(context, typePermission) == PackageManager.PERMISSION_GRANTED) {
@@ -81,18 +112,25 @@ fun validatePermissions(context: Context ,typePermission: String): Permissions{
     } else {
         Permissions.REFUSED
     }
-
-//    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-//        if (ContextCompat.checkSelfPermission(context, typePermission) == PackageManager.PERMISSION_GRANTED) {
-//            Permissions.ACCEPTED
-//        }else{
-//            Permissions.REFUSED
-//        }
-//
-//    }else{
-//        Permissions.PREVIOUS_VERSIONS
-//    }
 }
+
+fun hasLocationPermissions(context: Context): Boolean {
+    return ActivityCompat.checkSelfPermission(
+        context,
+        Manifest.permission.ACCESS_FINE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED
+}
+
+fun isGPSEnabled(activity: Activity): Boolean {
+    val locationManager = activity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+}
+
+fun requestGPS(context: Context){
+    val settingsIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+    context.startActivity(settingsIntent)
+}
+
 
 fun List<String>.toLoadCarousel(): List<CarouselItem>{
     val list = mutableListOf<CarouselItem>()

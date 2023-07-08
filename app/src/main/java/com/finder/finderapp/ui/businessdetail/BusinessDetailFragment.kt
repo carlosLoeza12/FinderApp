@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.finder.finderapp.databinding.FragmentBusinessDetailBinding
 import com.finder.finderapp.R
 import com.finder.finderapp.core.ResponseResult
+import com.finder.finderapp.core.showDialogTwoOptions
 import com.finder.finderapp.core.toFormatAddress
 import com.finder.finderapp.core.toFormatCategories
 import com.finder.finderapp.core.toLoadCarousel
@@ -93,8 +94,10 @@ class BusinessDetailFragment : Fragment(R.layout.fragment_business_detail) {
 
         binding.imgMaps.setOnClickListener {
             business?.let {
-                val action = BusinessDetailFragmentDirections.actionBusinessDetailFragmentToBusinessMapFragment(it)
-                findNavController().navigate(action)
+                showDialogTwoOptions(getString(R.string.txt_start_route, business?.name), true, requireContext()){
+                    val action = BusinessDetailFragmentDirections.actionBusinessDetailFragmentToBusinessMapFragment(it)
+                    findNavController().navigate(action)
+                }
             }
         }
 

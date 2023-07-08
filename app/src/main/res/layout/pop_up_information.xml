@@ -51,7 +51,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btnNo"
-            android:text="@string/txt_request"
+            android:text="@string/yes"
             android:layout_margin="8dp">
         </Button>
 
