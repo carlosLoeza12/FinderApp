@@ -66,17 +66,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone">
     </ProgressBar>
 
     <Button
-        android:id="@+id/btnOpenMaps"
+        android:id="@+id/btnInitRoute"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/navigation"
+        android:text="@string/start_route"
+        android:visibility="gone"
         android:drawableLeft="@drawable/ic_navigation">
     </Button>
 
