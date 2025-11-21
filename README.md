@@ -1,19 +1,20 @@
 # FinderApp.
 
-Disponible en Google play: https://play.google.com/store/apps/details?id=com.finder.finderapp
+Available on Google Play: https://play.google.com/store/apps/details?id=com.finder.finderapp
 
-# Descripción general:
-El objetivo de esta aplicación es realizar búsquedas de lugares de acuerdo al texto que se ingresa, por ejemplo, si en el buscador se escribe “Pizza” se mostrara una lista de negocios relacionados a pizzas. En esta lista se mostrará información sobre el lugar: Nombre, categoría, dirección, valoración y la distancia aproximada. Al hacer click en algún item se navegará a otra pantalla en el cual encontrara información mas detallada como: fotografías, numero y comentarios de personas que han visitado el lugar, así como también un icono (pin) de color rojo que al hacer click navegara a otra pantalla abriendo un mapa con la ruta desde la posición hasta el lugar mostrando la distancia y tiempo aproximada.
+# Overview:
+The objective of this application is to search for places based on the text entered. For example, if you type “Pizza” in the search bar, a list of pizza-related businesses will be displayed. This list will show information about each place: name, category, address, rating, and approximate distance.
+By clicking on an item, you will navigate to another screen where you will find more detailed information such as photos, phone number, and reviews from people who have visited the place. There will also be a red pin icon that, when clicked, will take you to another screen with a map showing the route from your current position to the place, including approximate distance and travel time.
 
-Para abordar este proyecto primero se hizo el registro en la página de yelp con la finalidad de obtener el api key que servirían como método de autenticación para acceder a la información de los lugares, en base a esto se hizo un análisis para determinar el flujo y la información que tendría la aplicación.
+To begin this project, a registration was first completed on the Yelp website in order to obtain the API key, which would serve as the authentication method to access information about the places. Based on this, an analysis was conducted to determine the application’s flow and the information it would contain.
 
-Para habilitar el mapa en la aplicación fue necesario crear una cuenta en Google cloud plataform, registrar el proyecto, habilitar el sdk de maps y así obtener las credenciales y permisos necesarios para el funcionamiento del mapa.
+To enable the map in the application, it was necessary to create an account on Google Cloud Platform, register the project, enable the Maps SDK, and obtain the required credentials and permissions for the map to work properly.
 
-Para el trazado de ruta, estimación de tiempo y distancia se utilizó la plataforma de openroute service, y para ello se hizo el registro del proyecto en su pagina con el fin de obtener el api key que nos serviría como método de autentificación para acceder a la información.
+For route tracing, time estimation, and distance calculation, the OpenRoute Service platform was used, So the project was registered on their website in order to obtain the API key, which would serve as the authentication method to access the information.
 
-Por ultimo se hizo las configuraciones necesarias para firmar y generar el archivo reléase del proyecto, se procedió a realizar el registro en la tienda de Google play y subir los archivos necesarios para mandar a revisión el proyecto. Al pasar unos días la app paso a estar disponible en la tienda.
+Lastly, the necessary configurations were made to sign and generate the project’s release file. The registration in the Google Play Store was then completed, and the required files were uploaded to submit the project for review. After a few days, the app became available in the store.
 
-Tecnologias y herramientas utilizadas:
+Technologies and tools used:
 #Android Studio #Kotlin #Mvvm #Navigation component #Retrofit and interceptors #Dagger hilt #Coil #Room #Coroutines, #Google maps #Postman, #View Binding
 
 # Links:
@@ -26,15 +27,15 @@ Google cloud platform: https://cloud.google.com/?hl=es
 
 Google play console: https://play.google.com/console/about/
 
-# Capturas:
+# Screenshots:
 
 <img width="197" alt="Imagen2" src="https://github.com/carlosLoeza12/FinderApp/assets/68243731/a5fb3fb9-64ef-40e7-bbfb-bbb3593e235b">
 
-<img width="194" alt="Imagen3" src="https://github.com/carlosLoeza12/FinderApp/assets/68243731/780d40b0-228d-4f2a-88d2-e8957e30743b">
+<img width="197" alt="Imagen3" src="https://github.com/carlosLoeza12/FinderApp/assets/68243731/780d40b0-228d-4f2a-88d2-e8957e30743b">
 
-<img width="195" alt="Imagen4" src="https://github.com/carlosLoeza12/FinderApp/assets/68243731/c50049b1-04db-4c7d-b887-0962b356e774">
+<img width="197" alt="Imagen4" src="https://github.com/carlosLoeza12/FinderApp/assets/68243731/c50049b1-04db-4c7d-b887-0962b356e774">
 
-<img width="195" alt="Imagen5" src="https://github.com/carlosLoeza12/FinderApp/assets/68243731/366d09c7-c40a-41b6-8a81-448b82bef513">
+<img width="197" alt="Imagen5" src="https://github.com/carlosLoeza12/FinderApp/assets/68243731/366d09c7-c40a-41b6-8a81-448b82bef513">
 
 
 
